@@ -10,6 +10,7 @@
 	<groupId>hudson.plugins</groupId>
 	<artifactId>cron_column</artifactId>
 	<version>1.001</version>
+    <url>http://wiki.hudson-ci.org/display/HUDSON/cron_column</url>
 	<packaging>hpi</packaging>
 	<name>Hudson Cron Column Plugin</name>
 
@@ -17,6 +18,7 @@
 		<developer>
 			<id>eelco_de_vlieger</id>
 			<name>Eelco de Vlieger</name>
+			<email>eelcodevlieger@hotmail.com</email>
 		</developer>
 	</developers>
 
