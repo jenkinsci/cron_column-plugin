@@ -9,7 +9,7 @@
 
 	<groupId>hudson.plugins</groupId>
 	<artifactId>cron_column</artifactId>
-	<version>1.001-SNAPSHOT</version>
+	<version>1.001</version>
     <url>http://wiki.hudson-ci.org/display/HUDSON/cron_column</url>
 	<packaging>hpi</packaging>
 	<name>Hudson Cron Column Plugin</name>
@@ -36,4 +36,10 @@
 			<url>http://maven.glassfish.org/content/groups/public/</url>
 		</pluginRepository>
 	</pluginRepositories>
+
+  <scm>
+    <connection>scm:svn:https://guest@svn.dev.java.net/svn/hudson/tags/cron_column-1.001</connection>
+    <developerConnection>scm:svn:https://svn.dev.java.net/svn/hudson/tags/cron_column-1.001</developerConnection>
+    <url>https://hudson.dev.java.net/source/browse/hudson/tags/cron_column-1.001</url>
+  </scm>
 </project>
