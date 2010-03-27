@@ -9,7 +9,7 @@
 
 	<groupId>hudson.plugins</groupId>
 	<artifactId>cron_column</artifactId>
-	<version>1.001</version>
+	<version>1.002-SNAPSHOT</version>
     <url>http://wiki.hudson-ci.org/display/HUDSON/cron_column</url>
 	<packaging>hpi</packaging>
 	<name>Hudson Cron Column Plugin</name>
