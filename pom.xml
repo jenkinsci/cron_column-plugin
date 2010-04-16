@@ -7,10 +7,9 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<groupId>hudson.plugins</groupId>
 	<artifactId>cron_column</artifactId>
-	<version>1.003-SNAPSHOT</version>
-    <url>http://wiki.hudson-ci.org/display/HUDSON/cron_column</url>
+	<version>1.002-SNAPSHOT</version>
+	<url>http://wiki.hudson-ci.org/display/HUDSON/Cron+Column+Plugin</url>
 	<packaging>hpi</packaging>
 	<name>Hudson Cron Column Plugin</name>
 
@@ -21,25 +20,4 @@
 			<email>eelcodevlieger@hotmail.com</email>
 		</developer>
 	</developers>
-
-	<!-- get every artifact through maven.glassfish.org, which proxies all the artifacts that we need -->
-	<repositories>
-		<repository>
-			<id>m.g.o-public</id>
-			<url>http://maven.glassfish.org/content/groups/public/</url>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>m.g.o-public</id>
-			<url>http://maven.glassfish.org/content/groups/public/</url>
-		</pluginRepository>
-	</pluginRepositories>
-
-  <scm>
-    <connection>scm:svn:https://guest@svn.dev.java.net/svn/hudson/tags/cron_column-1.001</connection>
-    <developerConnection>scm:svn:https://svn.dev.java.net/svn/hudson/tags/cron_column-1.001</developerConnection>
-    <url>https://hudson.dev.java.net/source/browse/hudson/tags/cron_column-1.001</url>
-  </scm>
 </project>
