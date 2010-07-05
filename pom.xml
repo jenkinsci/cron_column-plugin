@@ -8,7 +8,7 @@
 	</parent>
 
 	<artifactId>cron_column</artifactId>
-	<version>1.003</version>
+	<version>1.004-SNAPSHOT</version>
 	<url>http://wiki.hudson-ci.org/display/HUDSON/Cron+Column+Plugin</url>
 	<packaging>hpi</packaging>
 	<name>Hudson Cron Column Plugin</name>
@@ -20,10 +20,4 @@
 			<email>eelcodevlieger@hotmail.com</email>
 		</developer>
 	</developers>
-
-  <scm>
-    <connection>scm:svn:https://guest@svn.dev.java.net/svn/hudson/tags/cron_column-1.003</connection>
-    <developerConnection>scm:svn:https://svn.dev.java.net/svn/hudson/tags/cron_column-1.003</developerConnection>
-    <url>https://hudson.dev.java.net/source/browse/hudson/tags/cron_column-1.003</url>
-  </scm>
 </project>
