@@ -7,8 +7,8 @@ import net.sf.json.JSONObject;
 import org.kohsuke.stapler.StaplerRequest;
 
 import hudson.Extension;
+import hudson.model.AbstractProject;
 import hudson.model.Descriptor;
-import hudson.model.FreeStyleProject;
 import hudson.model.Job;
 import hudson.scm.NullSCM;
 import hudson.scm.SCM;
@@ -36,24 +36,21 @@ public class CronViewColumn extends ListViewColumn{
 
 	
 	/**
-	 * Note: Only supporting the FreeStyleProject Job.
-	 * 
 	 * @return HTML String containing the cron expression of each Trigger on the Job (when available). 
 	 */
     public String getCronTrigger(Job job){
-    	if( !(job instanceof FreeStyleProject) )
+    	if( !(job instanceof AbstractProject<?, ?>) )
     		return "";
     	
     	StringBuilder expression = new StringBuilder();
     	
-    	// Only supporting the FreeStyleProject Job.
-    	FreeStyleProject freeStyleProjectJob = (FreeStyleProject)job;
+    	AbstractProject<?, ?> project = (AbstractProject<?, ?>)job;
     	
     	// Check if source code management is enabled.
-    	SCM sourceCodeManagement = freeStyleProjectJob.getScm();
+    	SCM sourceCodeManagement = project.getScm();
 		boolean hasSourceCodeManagement = sourceCodeManagement != null && !(sourceCodeManagement instanceof NullSCM);
     	
-    	Map<TriggerDescriptor, Trigger> triggers = freeStyleProjectJob.getTriggers();
+    	Map<TriggerDescriptor, Trigger> triggers = project.getTriggers();
     	for(Trigger trigger : triggers.values()){
     		if(trigger == null)
     			continue;
