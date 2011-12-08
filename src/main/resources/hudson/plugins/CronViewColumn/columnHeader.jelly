@@ -1,3 +1,3 @@
 <j:jelly xmlns:j="jelly:core">
-    <th>Cron Trigger</th>
+    <th>${%Cron Trigger}</th>
 </j:jelly>
