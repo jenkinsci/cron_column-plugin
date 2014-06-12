@@ -8,7 +8,6 @@ import org.kohsuke.stapler.StaplerRequest;
 
 import hudson.Extension;
 import hudson.model.AbstractProject;
-import hudson.model.Descriptor;
 import hudson.model.Job;
 import hudson.scm.NullSCM;
 import hudson.scm.SCM;
@@ -17,6 +16,7 @@ import hudson.triggers.TimerTrigger;
 import hudson.triggers.Trigger;
 import hudson.triggers.TriggerDescriptor;
 import hudson.views.ListViewColumn;
+import hudson.views.ListViewColumnDescriptor;
 
 
 /**
@@ -124,7 +124,7 @@ public class CronViewColumn extends ListViewColumn{
 	
 	
     @Extension
-    public static final Descriptor<ListViewColumn> DESCRIPTOR = new Descriptor<ListViewColumn>(){
+    public static final class DescriptorImpl extends ListViewColumnDescriptor {
         @Override
         public ListViewColumn newInstance(StaplerRequest req, JSONObject formData){
         	return new CronViewColumn();
@@ -134,9 +134,11 @@ public class CronViewColumn extends ListViewColumn{
 		public String getDisplayName(){
 			return "CronTrigger";
 		}
-    };
-
-    public Descriptor<ListViewColumn> getDescriptor(){
-        return DESCRIPTOR;
+        
+        @Override
+        public boolean shownByDefault() {
+            return false;
+        }
     }
+
 }
