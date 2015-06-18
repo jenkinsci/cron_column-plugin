@@ -1,11 +1,5 @@
 package hudson.plugins;
 
-import java.util.Map;
-
-import net.sf.json.JSONObject;
-
-import org.kohsuke.stapler.StaplerRequest;
-
 import hudson.Extension;
 import hudson.model.AbstractProject;
 import hudson.model.Job;
@@ -17,6 +11,10 @@ import hudson.triggers.Trigger;
 import hudson.triggers.TriggerDescriptor;
 import hudson.views.ListViewColumn;
 import hudson.views.ListViewColumnDescriptor;
+import net.sf.json.JSONObject;
+import org.kohsuke.stapler.StaplerRequest;
+
+import java.util.Map;
 
 
 /**
@@ -50,7 +48,7 @@ public class CronViewColumn extends ListViewColumn{
     	SCM sourceCodeManagement = project.getScm();
 		boolean hasSourceCodeManagement = sourceCodeManagement != null && !(sourceCodeManagement instanceof NullSCM);
     	
-    	Map<TriggerDescriptor, Trigger> triggers = project.getTriggers();
+    	Map<TriggerDescriptor, Trigger<?>> triggers = project.getTriggers();
     	for(Trigger trigger : triggers.values()){
     		if(trigger == null)
     			continue;
