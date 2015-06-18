@@ -40,16 +40,17 @@ public class CronViewColumn extends ListViewColumn{
     public String getCronTrigger(Job job){
     	if( !(job instanceof ParameterizedJobMixIn.ParameterizedJob) )
     		return "";
-    	
+
     	StringBuilder expression = new StringBuilder();
-    	
-    	AbstractProject<?, ?> project = (AbstractProject<?, ?>)job;
-    	
+
     	// Check if source code management is enabled.
-    	SCM sourceCodeManagement = project.getScm();
-		boolean hasSourceCodeManagement = sourceCodeManagement != null && !(sourceCodeManagement instanceof NullSCM);
-    	
-    	Map<TriggerDescriptor, Trigger<?>> triggers = ((ParameterizedJobMixIn.ParameterizedJob)project).getTriggers();
+       boolean hasSourceCodeManagement = false;
+       if( job instanceof AbstractProject<?, ?> ){
+       	SCM sourceCodeManagement = ((AbstractProject<?, ?>)job).getScm();
+       	hasSourceCodeManagement = sourceCodeManagement != null && !(sourceCodeManagement instanceof NullSCM);
+       }
+
+    	Map<TriggerDescriptor, Trigger<?>> triggers = ((ParameterizedJobMixIn.ParameterizedJob)job).getTriggers();
     	for(Trigger trigger : triggers.values()){
     		if(trigger == null)
     			continue;
