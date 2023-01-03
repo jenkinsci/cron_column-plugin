@@ -9,7 +9,7 @@
 
 	<artifactId>cron_column</artifactId>
 	<version>1.5-SNAPSHOT</version>
-	<url>http://wiki.jenkins-ci.org/display/JENKINS/Cron+Column+Plugin</url>
+	<url>https://github.com/jenkinsci/cron_column-plugin</url>
 	<packaging>hpi</packaging>
 	<name>Cron Column Plugin</name>
 
