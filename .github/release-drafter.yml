@@ -1,0 +1,2 @@
+_extends: .github
+tag-template: cron_column-$NEXT_MINOR_VERSION
