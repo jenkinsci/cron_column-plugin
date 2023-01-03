@@ -4,7 +4,7 @@ View column showing the cron trigger expressions that can be configured on a job
 This is a ListViewColumn plugin that adds a column to a jobs overview page.
 The column displays the cron-like expression of each trigger that can be configured on a job.
 
-![](docs/images/cron-column.jpg)
+![](docs/images/cron-column.png)
 
 # How to Use
 
