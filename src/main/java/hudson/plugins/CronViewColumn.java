@@ -50,7 +50,7 @@ public class CronViewColumn extends ListViewColumn{
     	SCM sourceCodeManagement = project.getScm();
 		boolean hasSourceCodeManagement = sourceCodeManagement != null && !(sourceCodeManagement instanceof NullSCM);
     	
-    	Map<TriggerDescriptor, Trigger> triggers = project.getTriggers();
+    	Map<TriggerDescriptor, Trigger<?>> triggers = project.getTriggers();
     	for(Trigger trigger : triggers.values()){
     		if(trigger == null)
     			continue;
