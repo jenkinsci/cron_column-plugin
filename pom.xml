@@ -3,7 +3,8 @@
 	<parent>
 		<groupId>org.jenkins-ci.plugins</groupId>
 		<artifactId>plugin</artifactId>
-		<version>1.424</version>
+                <version>4.51</version>
+                <relativePath />
 	</parent>
 
 	<artifactId>cron_column</artifactId>
@@ -11,6 +12,10 @@
 	<url>http://wiki.jenkins-ci.org/display/JENKINS/Cron+Column+Plugin</url>
 	<packaging>hpi</packaging>
 	<name>Cron Column Plugin</name>
+
+        <properties>
+                <jenkins.version>2.346.3</jenkins.version>
+        </properties>
 
 	<developers>
 		<developer>
