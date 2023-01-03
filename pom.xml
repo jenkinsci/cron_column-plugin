@@ -8,7 +8,7 @@
 	</parent>
 
 	<artifactId>cron_column</artifactId>
-	<version>1.5-SNAPSHOT</version>
+	<version>1.5</version>
 	<url>https://github.com/jenkinsci/cron_column-plugin</url>
 	<packaging>hpi</packaging>
 	<name>Cron Column Plugin</name>
@@ -29,7 +29,7 @@
         <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
         <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-      <tag>HEAD</tag>
+      <tag>cron_column-1.5</tag>
   </scm>
     <repositories>
         <repository>
