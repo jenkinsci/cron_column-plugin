@@ -1,11 +1,5 @@
 package hudson.plugins;
 
-import java.util.Map;
-
-import net.sf.json.JSONObject;
-
-import org.kohsuke.stapler.StaplerRequest;
-
 import hudson.Extension;
 import hudson.Util;
 import hudson.model.AbstractProject;
@@ -18,6 +12,11 @@ import hudson.triggers.Trigger;
 import hudson.triggers.TriggerDescriptor;
 import hudson.views.ListViewColumn;
 import hudson.views.ListViewColumnDescriptor;
+import jenkins.model.ParameterizedJobMixIn;
+import net.sf.json.JSONObject;
+import org.kohsuke.stapler.StaplerRequest;
+
+import java.util.Map;
 
 
 /**
@@ -40,18 +39,19 @@ public class CronViewColumn extends ListViewColumn{
 	 * @return HTML String containing the cron expression of each Trigger on the Job (when available). 
 	 */
     public String getCronTrigger(Job job){
-    	if( !(job instanceof AbstractProject<?, ?>) )
+    	if( !(job instanceof ParameterizedJobMixIn.ParameterizedJob) )
     		return "";
-    	
+
     	StringBuilder expression = new StringBuilder();
-    	
-    	AbstractProject<?, ?> project = (AbstractProject<?, ?>)job;
-    	
+
     	// Check if source code management is enabled.
-    	SCM sourceCodeManagement = project.getScm();
-		boolean hasSourceCodeManagement = sourceCodeManagement != null && !(sourceCodeManagement instanceof NullSCM);
-    	
-    	Map<TriggerDescriptor, Trigger<?>> triggers = project.getTriggers();
+       boolean hasSourceCodeManagement = false;
+       if( job instanceof AbstractProject<?, ?> ){
+       	SCM sourceCodeManagement = ((AbstractProject<?, ?>)job).getScm();
+       	hasSourceCodeManagement = sourceCodeManagement != null && !(sourceCodeManagement instanceof NullSCM);
+       }
+
+    	Map<TriggerDescriptor, Trigger<?>> triggers = ((ParameterizedJobMixIn.ParameterizedJob)job).getTriggers();
     	for(Trigger trigger : triggers.values()){
     		if(trigger == null)
     			continue;
