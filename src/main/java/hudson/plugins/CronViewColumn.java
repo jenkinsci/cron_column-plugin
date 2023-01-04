@@ -1,6 +1,7 @@
 package hudson.plugins;
 
 import hudson.Extension;
+import hudson.Util;
 import hudson.model.AbstractProject;
 import hudson.model.Job;
 import hudson.scm.NullSCM;
@@ -59,7 +60,7 @@ public class CronViewColumn extends ListViewColumn{
 			if( cronExpression == null || cronExpression.trim().length() == 0 )
 				continue;
     		
-			cronExpression = formatComments(cronExpression);
+			cronExpression = formatComments(Util.escape(cronExpression));
 			
 			// Display each entry on a separate line. 
 			if(expression.length() > 0)

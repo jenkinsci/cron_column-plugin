@@ -1,3 +1,4 @@
+<?jelly escape-by-default='true'?>
 <div>
   Column showing the cron trigger expressions that can be configured on a job (Subversion, Scheduled Builds etc).
 </div>
