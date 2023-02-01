@@ -112,7 +112,7 @@ public class CronViewColumn extends ListViewColumn{
      */
 	private String getTriggerName(Trigger<?> trigger){
 		String type = trigger.getDescriptor().getDisplayName();
-		if(type == null || type.trim().length() == 0){
+		if(type.trim().length() == 0){
 			if(trigger instanceof SCMTrigger)
 				type = "SCM polling";
 			else if(trigger instanceof TimerTrigger)
