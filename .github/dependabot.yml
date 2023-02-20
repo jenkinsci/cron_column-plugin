@@ -9,5 +9,5 @@ updates:
   reviewers:
   - MarkEWaite
   labels:
-  - skip-changelog
+  - dependencies
 
