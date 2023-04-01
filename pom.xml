@@ -14,7 +14,7 @@
 	<name>Cron Column Plugin</name>
 
         <properties>
-                <jenkins.version>2.346.3</jenkins.version>
+                <jenkins.version>2.375.4</jenkins.version>
                 <spotbugs.effort>Max</spotbugs.effort>
                 <spotbugs.threshold>Low</spotbugs.threshold>
         </properties>
