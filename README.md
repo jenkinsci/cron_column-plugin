@@ -1,18 +1,14 @@
 # Cron Column plugin
 
-View column showing the cron trigger expressions that can be configured on a job.
-This is a ListViewColumn plugin that adds a column to a jobs overview page.
-The column displays the cron-like expression of each trigger that can be configured on a job.
+Show the cron trigger expressions configured for a job in an optional column.
+The column displays the cron-like expression of each trigger configured for a job.
 
 ![](docs/images/cron-column.png)
 
-# How to Use
+## Plugin tutorial
 
-Once you have installed this plugin, you still have to update a view to add this column.
-The pages [Changing the Columns of a View](https://wiki.jenkins.io/display/JENKINS/Changing+the+Columns+of+a+View)
-and [Editing or Replacing the All View](https://wiki.jenkins.io/display/JENKINS/Editing+or+Replacing+the+All+View)
-will show you how.
+[![User tutorial by Darin Pope](docs/images/plugin-tutorial-video.jpg)](https://www.youtube.com/watch?v=W8Ck0Bi3EN0)
 
-# Version History
+## How to Use
 
-[GitHub releases](https://github.com/jenkinsci/cron_column-plugin/releases)
+Install the plugin, add a new view, and add the cron column to that view.
