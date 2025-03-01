@@ -14,7 +14,7 @@ import hudson.views.ListViewColumn;
 import hudson.views.ListViewColumnDescriptor;
 import jenkins.model.ParameterizedJobMixIn;
 import net.sf.json.JSONObject;
-import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerRequest2;
 
 import java.util.Map;
 
@@ -127,7 +127,7 @@ public class CronViewColumn extends ListViewColumn{
     @Extension
     public static final class DescriptorImpl extends ListViewColumnDescriptor {
         @Override
-        public ListViewColumn newInstance(StaplerRequest req, JSONObject formData){
+        public ListViewColumn newInstance(StaplerRequest2 req, JSONObject formData){
         	return new CronViewColumn();
         }
         
