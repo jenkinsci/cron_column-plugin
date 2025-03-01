@@ -42,8 +42,8 @@ public class CronViewColumn extends ListViewColumn {
 
         // Check if source code management is enabled.
         boolean hasSourceCodeManagement = false;
-        if (job instanceof AbstractProject<?, ?>) {
-            SCM sourceCodeManagement = ((AbstractProject<?, ?>) job).getScm();
+        if (job instanceof AbstractProject<?, ?> project) {
+            SCM sourceCodeManagement = project.getScm();
             hasSourceCodeManagement = sourceCodeManagement != null && !(sourceCodeManagement instanceof NullSCM);
         }
 
