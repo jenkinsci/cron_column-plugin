@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>org.jenkins-ci.plugins</groupId>
 		<artifactId>plugin</artifactId>
-                <version>4.88</version>
+                <version>5.7</version>
                 <relativePath />
 	</parent>
 
@@ -14,19 +14,11 @@
 	<name>Cron Column Plugin</name>
 
         <properties>
-                <jenkins.baseline>2.375</jenkins.baseline>
-                <jenkins.version>${jenkins.baseline}.4</jenkins.version>
+                <jenkins.baseline>2.479</jenkins.baseline>
+                <jenkins.version>${jenkins.baseline}.3</jenkins.version>
                 <spotbugs.effort>Max</spotbugs.effort>
                 <spotbugs.threshold>Low</spotbugs.threshold>
         </properties>
-
-	<developers>
-		<developer>
-			<id>eelco_de_vlieger</id>
-			<name>Eelco de Vlieger</name>
-			<email>eelcodevlieger@hotmail.com</email>
-		</developer>
-	</developers>
 
     <scm>
         <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
