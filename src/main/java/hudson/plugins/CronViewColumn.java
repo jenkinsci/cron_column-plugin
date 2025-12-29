@@ -35,8 +35,8 @@ public class CronViewColumn extends ListViewColumn {
     /**
      * @return HTML String containing the cron expression of each Trigger on the Job (when available).
      */
-    public String getCronTrigger(Job job) {
-        if (!(job instanceof ParameterizedJobMixIn.ParameterizedJob)) return "";
+    public String getCronTrigger(Job<?, ?> job) {
+        if (!(job instanceof ParameterizedJobMixIn.ParameterizedJob<?, ?> pj)) return "";
 
         StringBuilder expression = new StringBuilder();
 
@@ -47,17 +47,14 @@ public class CronViewColumn extends ListViewColumn {
             hasSourceCodeManagement = sourceCodeManagement != null && !(sourceCodeManagement instanceof NullSCM);
         }
 
-        Map<TriggerDescriptor, Trigger<?>> triggers = ((ParameterizedJobMixIn.ParameterizedJob) job).getTriggers();
-        for (Trigger trigger : triggers.values()) {
+        Map<TriggerDescriptor, Trigger<?>> triggers = pj.getTriggers();
+        for (Trigger<?> trigger : triggers.values()) {
             if (trigger == null) continue;
 
             String cronExpression = trigger.getSpec();
-            if (cronExpression == null || cronExpression.trim().length() == 0) continue;
+            if (cronExpression == null || cronExpression.isBlank()) continue;
 
-            cronExpression = formatComments(Util.escape(cronExpression));
-
-            // Display each entry on a separate line.
-            if (expression.length() > 0) expression.append("\n<br/>\n");
+            cronExpression = formatComments(cronExpression);
 
             // Cron expression can still be set when Source Code Management has been disabled.
             if (!hasSourceCodeManagement && trigger instanceof SCMTrigger) expression.append("<i>(Disabled) </i>");
@@ -79,18 +76,19 @@ public class CronViewColumn extends ListViewColumn {
 
         String[] expressionLines = cronExpression.split("\n");
         for (String expressionLine : expressionLines) {
+            expressionLine = Util.escape(expressionLine);
             int commentStartIndex = expressionLine.indexOf(CRON_EXPRESSION_COMMENT_START);
             if (commentStartIndex < 0) {
                 // No comment, so just add the original expression line.
                 formattedExpression.append(expressionLine);
             } else {
                 // Comment found, wrapping comment in font tags (setting the color).
-                formattedExpression.append(expressionLine.substring(0, commentStartIndex));
+                formattedExpression.append(expressionLine, 0, commentStartIndex);
                 formattedExpression.append("<b><i><font color=\"" + CRON_EXPRESSION_COMMENT_COLOR + "\">");
                 formattedExpression.append(expressionLine.substring(commentStartIndex));
                 formattedExpression.append("</font></i></b>");
             }
-            formattedExpression.append(" ");
+            formattedExpression.append("<br/>\n");
         }
 
         return formattedExpression.toString().trim();
@@ -103,7 +101,7 @@ public class CronViewColumn extends ListViewColumn {
      */
     private String getTriggerName(Trigger<?> trigger) {
         String type = trigger.getDescriptor().getDisplayName();
-        if (type.trim().length() == 0) {
+        if (type.isBlank()) {
             if (trigger instanceof SCMTrigger) type = "SCM polling";
             else if (trigger instanceof TimerTrigger) type = "Build Trigger";
             else type = "Unknown Type";
@@ -120,7 +118,7 @@ public class CronViewColumn extends ListViewColumn {
 
         @Override
         public String getDisplayName() {
-            return "CronTrigger";
+            return "Cron Trigger";
         }
 
         @Override
