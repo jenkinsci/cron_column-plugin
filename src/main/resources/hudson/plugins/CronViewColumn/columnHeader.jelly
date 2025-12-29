@@ -1,4 +1,4 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core">
-    <th class="column-cron">${%Cron Trigger}</th>
+    <th class="column-cron" data-sort-disable="true">${%Cron Trigger}</th>
 </j:jelly>

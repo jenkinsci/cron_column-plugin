@@ -1,5 +1,6 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core">
-  <j:set var="cronTrigger" value="${it.getCronTrigger(job)}"/>
-  <td class="column-cron"><j:out value="${cronTrigger}"/></td>
+  <j:set var="cronTrigger" value="${it.getCronTrigger(job, it.hideComments)}"/>
+  <j:set var="cronTriggerTooltip" value="${it.getCronTrigger(job, false)}"/>
+  <td class="column-cron" data-html-tooltip="${it.hideComments?cronTriggerTooltip:null}"><j:out value="${cronTrigger}"/></td>
 </j:jelly>
