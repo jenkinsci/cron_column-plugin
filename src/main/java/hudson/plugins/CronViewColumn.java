@@ -15,6 +15,8 @@ import hudson.views.ListViewColumnDescriptor;
 import java.util.Map;
 import jenkins.model.ParameterizedJobMixIn;
 import net.sf.json.JSONObject;
+import org.jenkinsci.Symbol;
+import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.StaplerRequest2;
 
 /**
@@ -31,6 +33,9 @@ public class CronViewColumn extends ListViewColumn {
 
     private static final String CRON_EXPRESSION_COMMENT_START = "#";
     private static final String CRON_EXPRESSION_COMMENT_COLOR = "#4a7b4a";
+
+    @DataBoundConstructor
+    public CronViewColumn() {}
 
     /**
      * @return HTML String containing the cron expression of each Trigger on the Job (when available).
@@ -112,6 +117,7 @@ public class CronViewColumn extends ListViewColumn {
     }
 
     @Extension
+    @Symbol("cronTrigger")
     public static final class DescriptorImpl extends ListViewColumnDescriptor {
         @Override
         public ListViewColumn newInstance(StaplerRequest2 req, JSONObject formData) {
