@@ -1,5 +1,5 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core">
   <j:set var="cronTrigger" value="${it.getCronTrigger(job)}"/>
-  <td><j:out value="${cronTrigger}"/></td>
+  <td class="column-cron"><j:out value="${cronTrigger}"/></td>
 </j:jelly>
