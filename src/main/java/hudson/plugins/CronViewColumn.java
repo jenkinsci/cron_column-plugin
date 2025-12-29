@@ -14,10 +14,9 @@ import hudson.views.ListViewColumn;
 import hudson.views.ListViewColumnDescriptor;
 import java.util.Map;
 import jenkins.model.ParameterizedJobMixIn;
-import net.sf.json.JSONObject;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.StaplerRequest2;
+import org.kohsuke.stapler.DataBoundSetter;
 
 /**
  * CronViewColumn
@@ -32,15 +31,26 @@ import org.kohsuke.stapler.StaplerRequest2;
 public class CronViewColumn extends ListViewColumn {
 
     private static final String CRON_EXPRESSION_COMMENT_START = "#";
-    private static final String CRON_EXPRESSION_COMMENT_COLOR = "#4a7b4a";
+    private static final String CRON_EXPRESSION_COMMENT_COLOR = "var(--dark-green)";
+
+    private boolean hideComments;
 
     @DataBoundConstructor
     public CronViewColumn() {}
 
+    public boolean getHideComments() {
+        return hideComments;
+    }
+
+    @DataBoundSetter
+    public void setHideComments(boolean hideComments) {
+        this.hideComments = hideComments;
+    }
+
     /**
      * @return HTML String containing the cron expression of each Trigger on the Job (when available).
      */
-    public String getCronTrigger(Job<?, ?> job) {
+    public String getCronTrigger(Job<?, ?> job, boolean hideComments) {
         if (!(job instanceof ParameterizedJobMixIn.ParameterizedJob<?, ?> pj)) return "";
 
         StringBuilder expression = new StringBuilder();
@@ -59,7 +69,7 @@ public class CronViewColumn extends ListViewColumn {
             String cronExpression = trigger.getSpec();
             if (cronExpression == null || cronExpression.isBlank()) continue;
 
-            cronExpression = formatComments(cronExpression);
+            cronExpression = formatComments(cronExpression, hideComments);
 
             // Cron expression can still be set when Source Code Management has been disabled.
             if (!hasSourceCodeManagement && trigger instanceof SCMTrigger) expression.append("<i>(Disabled) </i>");
@@ -74,26 +84,34 @@ public class CronViewColumn extends ListViewColumn {
     /**
      * Change the font color on the comment text within a cron expression.
      */
-    private String formatComments(String cronExpression) {
+    private String formatComments(String cronExpression, boolean hideComments) {
         if (!cronExpression.contains(CRON_EXPRESSION_COMMENT_START)) return cronExpression; // No comment found.
 
         StringBuilder formattedExpression = new StringBuilder();
 
         String[] expressionLines = cronExpression.split("\n");
         for (String expressionLine : expressionLines) {
-            expressionLine = Util.escape(expressionLine);
+            expressionLine = Util.escape(expressionLine).trim();
+            if (expressionLine.isBlank()) {
+                continue;
+            }
             int commentStartIndex = expressionLine.indexOf(CRON_EXPRESSION_COMMENT_START);
             if (commentStartIndex < 0) {
                 // No comment, so just add the original expression line.
                 formattedExpression.append(expressionLine);
             } else {
-                // Comment found, wrapping comment in font tags (setting the color).
-                formattedExpression.append(expressionLine, 0, commentStartIndex);
-                formattedExpression.append("<b><i><font color=\"" + CRON_EXPRESSION_COMMENT_COLOR + "\">");
-                formattedExpression.append(expressionLine.substring(commentStartIndex));
-                formattedExpression.append("</font></i></b>");
+                if (hideComments) {
+                    formattedExpression.append(expressionLine, 0, commentStartIndex);
+                    continue;
+                } else {
+                    // Comment found, wrapping comment in font tags (setting the color).
+                    formattedExpression.append(expressionLine, 0, commentStartIndex);
+                    formattedExpression.append("<b><em style='color: " + CRON_EXPRESSION_COMMENT_COLOR + ";'>");
+                    formattedExpression.append(expressionLine.substring(commentStartIndex));
+                    formattedExpression.append("</em></b>");
+                }
             }
-            formattedExpression.append("<br/>\n");
+            formattedExpression.append("<br/>");
         }
 
         return formattedExpression.toString().trim();
@@ -117,10 +135,6 @@ public class CronViewColumn extends ListViewColumn {
     @Extension
     @Symbol("cronTrigger")
     public static final class DescriptorImpl extends ListViewColumnDescriptor {
-        @Override
-        public ListViewColumn newInstance(StaplerRequest2 req, JSONObject formData) {
-            return new CronViewColumn();
-        }
 
         @Override
         public String getDisplayName() {
