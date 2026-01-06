@@ -57,13 +57,6 @@ public class CronViewColumn extends ListViewColumn {
     }
 
     private String getCronSpec(Trigger<?> trigger) {
-        boolean isExtendedTimerTrigger =
-                hasPlugin("extended-timer-trigger") && trigger instanceof ExtendedTimerTrigger ett;
-
-        boolean isParameterizedTrigger =
-                hasPlugin("parameterized-scheduler") && trigger instanceof ParameterizedTimerTrigger ptt;
-
-        String cronExpression;
         if (hasPlugin("extended-timer-trigger") && trigger instanceof ExtendedTimerTrigger ett) {
             return ett.getCronSpec();
         }
