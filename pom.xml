@@ -24,7 +24,7 @@
   <properties>
     <changelist>999999-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/cron_column-plugin</gitHubRepo>
-    <jenkins.baseline>2.516</jenkins.baseline>
+    <jenkins.baseline>2.528</jenkins.baseline>
     <jenkins.version>${jenkins.baseline}.3</jenkins.version>
     <spotbugs.effort>Max</spotbugs.effort>
     <spotbugs.threshold>Low</spotbugs.threshold>
@@ -39,7 +39,7 @@
       <dependency>
         <groupId>io.jenkins.tools.bom</groupId>
         <artifactId>bom-${jenkins.baseline}.x</artifactId>
-        <version>6210.v69ea_fd8a_f010</version>
+        <version>6509.v993a_c958a_e35</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -50,7 +50,6 @@
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>extended-timer-trigger</artifactId>
-      <version>48.vf99b_c63a_685b_</version>
       <optional>true</optional>
     </dependency>
     <dependency>
